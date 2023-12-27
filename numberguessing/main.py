@@ -26,6 +26,10 @@ def titleSequence():
     cprint("\nThe rules are simple, you will pick a range for the number and \nI will tell you based on your input if you are correct or not!", 'yellow')
     cprint("\n*** LETS BEGIN (⌐▨_▨) \n", 'blue')
 
+def footSequence():
+    foot = figlet_format("YOU WIN", justify="center", width=70)
+    cprint(foot, 'blue')
+
 def defineNumber():
     while True:
         try:
@@ -39,17 +43,26 @@ def defineNumber():
 def guessTheNumber(number):
     selection = 0
     while selection != number:
-        selection = int(input("What number am I thinking of: "))
-        if selection < number:
-            print("too low")
+        while True:
+            try:
+                selection = int(input("\nWhat number am I thinking of: "))
+                if selection < number:
+                    print("\ntoo low")
+                elif selection > number:
+                    print("\ntoo high")
+                break
+            except ValueError:
+                print("Sorry that is not a valid guess!\n")
+    footSequence()
 
 
 titleSequence()
-guessTheNumber(defineNumber())
+rangeSelection = defineNumber()
+loading_animation()
+guessTheNumber(rangeSelection)
 
 
 
-"""loading_animation()"""
 
 
 
